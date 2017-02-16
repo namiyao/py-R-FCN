@@ -25,16 +25,13 @@ import caffe, os, sys, cv2
 import argparse
 
 CLASSES = ('__background__',
-           'aeroplane', 'bicycle', 'bird', 'boat',
-           'bottle', 'bus', 'car', 'cat', 'chair',
-           'cow', 'diningtable', 'dog', 'horse',
-           'motorbike', 'person', 'pottedplant',
-           'sheep', 'sofa', 'train', 'tvmonitor')
+           'alb', 'bet', 'dol',
+           'lag', 'other', 'shark', 'yft')
 
 NETS = {'ResNet-101': ('ResNet-101',
                   'resnet101_rfcn_final.caffemodel'),
         'ResNet-50': ('ResNet-50',
-                  'resnet50_rfcn_final.caffemodel')}
+                  'resnet50_rfcn_ohem_iter_20000.caffemodel')}
 
 
 def vis_detections(im, class_name, dets, thresh=0.5):
