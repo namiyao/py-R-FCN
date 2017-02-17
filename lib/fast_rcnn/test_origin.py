@@ -241,8 +241,6 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
     if not cfg.TEST.HAS_RPN:
         roidb = imdb.roidb
 
-       
-    test_preds = np.ndarry((num_images,imdb.num_classes), dtype='float')
     for i in xrange(num_images):
         # filter out any ground truth boxes
         if cfg.TEST.HAS_RPN:
@@ -291,15 +289,7 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
         print 'im_detect: {:d}/{:d} {:.3f}s {:.3f}s' \
               .format(i + 1, num_images, _t['im_detect'].average_time,
                       _t['misc'].average_time)
-              
-        index = np.argmax(np.amax(scores, axis=1))
-        test_preds[i,:] = scores[index,:]
 
-    
-    test_preds_file = os.path.join(output_dir, 'test_preds.pkl')
-    with open(test_preds_file, 'wb') as f:
-        cPickle.dump(test_preds, f, cPickle.HIGHEST_PROTOCOL)
-    
     det_file = os.path.join(output_dir, 'detections.pkl')
     with open(det_file, 'wb') as f:
         cPickle.dump(all_boxes, f, cPickle.HIGHEST_PROTOCOL)
