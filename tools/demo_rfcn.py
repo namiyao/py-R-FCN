@@ -18,6 +18,8 @@ from fast_rcnn.config import cfg
 from fast_rcnn.test import im_detect
 from fast_rcnn.nms_wrapper import nms
 from utils.timer import Timer
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.io as sio
@@ -138,7 +140,8 @@ if __name__ == '__main__':
         _, _= im_detect(net, im)
 
     #im_names = ['000456.jpg', '000542.jpg', '001150.jpg', '001763.jpg', '004545.jpg']
-    im_names = ['img_00091.jpg', 'img_01166.jpg', 'img_04056.jpg', 'img_07406.jpg']
+    #im_names = ['img_00091.jpg', 'img_01166.jpg', 'img_04056.jpg', 'img_07406.jpg']
+    im_names = ['img_00109.jpg', 'img_02769.jpg', 'img_03891.jpg', 'img_04419.jpg', 'img_05580.jpg','img_06101.jpg', 'img_07417.jpg']
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
         print 'Demo for data/demo/{}'.format(im_name)

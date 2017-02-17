@@ -295,4 +295,4 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
         cPickle.dump(all_boxes, f, cPickle.HIGHEST_PROTOCOL)
 
     print 'Evaluating detections'
-    imdb.evaluate_detections(all_boxes, output_dir)
+    #imdb.evaluate_detections(all_boxes, output_dir)
