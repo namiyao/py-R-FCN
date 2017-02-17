@@ -242,7 +242,7 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
         roidb = imdb.roidb
 
        
-    test_preds = np.ndarry((num_images,imdb.num_classes), dtype='float')
+    test_preds = np.ndarray((num_images,imdb.num_classes), dtype='float')
     for i in xrange(num_images):
         # filter out any ground truth boxes
         if cfg.TEST.HAS_RPN:
@@ -292,8 +292,8 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
               .format(i + 1, num_images, _t['im_detect'].average_time,
                       _t['misc'].average_time)
               
-        index = np.argmax(np.amax(scores, axis=1))
-        test_preds[i,:] = scores[index,:]
+        index_wobg = np.argmax(np.amax(scores[:,1:], axis=1))
+        test_preds[i,:] = scores[index_wobg,:]
 
     
     test_preds_file = os.path.join(output_dir, 'test_preds.pkl')
