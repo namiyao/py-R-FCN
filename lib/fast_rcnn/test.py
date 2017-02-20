@@ -265,26 +265,30 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
         for j in xrange(1, imdb.num_classes):
             inds = np.where(scores[:, j] > thresh)[0]
             cls_scores = scores[inds, j]
+            cls_scores_full = scores[inds, :]
             if cfg.TEST.AGNOSTIC:
                 cls_boxes = boxes[inds, 4:8]
             else:
                 cls_boxes = boxes[inds, j*4:(j+1)*4]
             cls_dets = np.hstack((cls_boxes, cls_scores[:, np.newaxis])) \
                 .astype(np.float32, copy=False)
+            cls_dets_full = np.hstack((cls_boxes, cls_scores)) \
+                .astype(np.float32, copy=False)
             keep = nms(cls_dets, cfg.TEST.NMS)
             cls_dets = cls_dets[keep, :]
+            cls_dets_full = cls_dets_full[keep, :]
             if vis:
                 vis_detections(im, imdb.classes[j], cls_dets)
-            all_boxes[j][i] = cls_dets
+            all_boxes[j][i] = cls_dets_full
 
         # Limit to max_per_image detections *over all classes*
         if max_per_image > 0:
-            image_scores = np.hstack([all_boxes[j][i][:, -1]
+            image_scores = np.hstack([all_boxes[j][i][:, 3+j]
                                       for j in xrange(1, imdb.num_classes)])
             if len(image_scores) > max_per_image:
                 image_thresh = np.sort(image_scores)[-max_per_image]
                 for j in xrange(1, imdb.num_classes):
-                    keep = np.where(all_boxes[j][i][:, -1] >= image_thresh)[0]
+                    keep = np.where(all_boxes[j][i][:, 3+j] >= image_thresh)[0]
                     all_boxes[j][i] = all_boxes[j][i][keep, :]
         _t['misc'].toc()
 
@@ -300,7 +304,7 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
     with open(test_preds_file, 'wb') as f:
         cPickle.dump(test_preds, f, cPickle.HIGHEST_PROTOCOL)
     
-    det_file = os.path.join(output_dir, 'detections.pkl')
+    det_file = os.path.join(output_dir, 'detections_full.pkl')
     with open(det_file, 'wb') as f:
         cPickle.dump(all_boxes, f, cPickle.HIGHEST_PROTOCOL)
 
