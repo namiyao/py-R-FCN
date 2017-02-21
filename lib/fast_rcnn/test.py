@@ -272,7 +272,7 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
                 cls_boxes = boxes[inds, j*4:(j+1)*4]
             cls_dets = np.hstack((cls_boxes, cls_scores[:, np.newaxis])) \
                 .astype(np.float32, copy=False)
-            cls_dets_full = np.hstack((cls_boxes, cls_scores)) \
+            cls_dets_full = np.hstack((cls_boxes, cls_scores_full)) \
                 .astype(np.float32, copy=False)
             keep = nms(cls_dets, cfg.TEST.NMS)
             cls_dets = cls_dets[keep, :]
@@ -283,12 +283,12 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
 
         # Limit to max_per_image detections *over all classes*
         if max_per_image > 0:
-            image_scores = np.hstack([all_boxes[j][i][:, 3+j]
+            image_scores = np.hstack([all_boxes[j][i][:, 4+j]
                                       for j in xrange(1, imdb.num_classes)])
             if len(image_scores) > max_per_image:
                 image_thresh = np.sort(image_scores)[-max_per_image]
                 for j in xrange(1, imdb.num_classes):
-                    keep = np.where(all_boxes[j][i][:, 3+j] >= image_thresh)[0]
+                    keep = np.where(all_boxes[j][i][:, 4+j] >= image_thresh)[0]
                     all_boxes[j][i] = all_boxes[j][i][keep, :]
         _t['misc'].toc()
 
