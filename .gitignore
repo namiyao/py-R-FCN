@@ -1,3 +1,7 @@
+*.caffemodel
+*.solverstate
+
+
 .ipynb_checkpoints
 .idea
 lib/build

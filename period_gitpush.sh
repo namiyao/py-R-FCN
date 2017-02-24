@@ -9,6 +9,7 @@ do
     date
     aws s3 cp ~/py-R-FCN/experiments s3://disneydsy/py-R-FCN/experiments --recursive
     aws s3 cp ~/py-R-FCN/output s3://disneydsy/py-R-FCN/output --recursive
+    aws s3 cp ~/py-R-FCN/ s3://disneydsy/py-R-FCN/snapshot/ --recursive --exclude "*" --include "*.caffemodel" --include "*.solverstate"
     #aws s3 sync ~/Kaggle_NCFM s3://disneydsy/Kaggle_NCFM --exclude "data/*"
     git add .
     git commit -m "auto_period"
