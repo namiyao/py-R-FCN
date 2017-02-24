@@ -1,0 +1,51 @@
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 9: jq: command not found
+[Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 10: [: =: unary operator expected
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 9: jq: command not found
+[Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 10: [: =: unary operator expected
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 9: jq: command not found
+[Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 10: [: =: unary operator expected
+Time 1 ---------------------------------------
+Fri Feb 24 05:45:40 UTC 2017
+upload: experiments/scripts/fast_rcnn.sh to s3://disneydsy/py-R-FCN/experiments/scripts/fast_rcnn.sh
+Completed 1 of 15 part(s) with 14 file(s) remainingupload: experiments/logs/.gitignore to s3://disneydsy/py-R-FCN/experiments/logs/.gitignore
+Completed 2 of 15 part(s) with 13 file(s) remainingupload: experiments/cfgs/faster_rcnn_alt_opt.yml to s3://disneydsy/py-R-FCN/experiments/cfgs/faster_rcnn_alt_opt.yml
+Completed 3 of 15 part(s) with 12 file(s) remainingupload: experiments/logs/rfcn_end2end_ResNet-50_.txt.2017-02-16_08-56-43 to s3://disneydsy/py-R-FCN/experiments/logs/rfcn_end2end_ResNet-50_.txt.2017-02-16_08-56-43
+Completed 4 of 15 part(s) with 11 file(s) remainingupload: experiments/cfgs/faster_rcnn_end2end.yml to s3://disneydsy/py-R-FCN/experiments/cfgs/faster_rcnn_end2end.yml
+Completed 5 of 15 part(s) with 10 file(s) remainingupload: experiments/cfgs/rfcn_alt_opt_5step_ohem.yml to s3://disneydsy/py-R-FCN/experiments/cfgs/rfcn_alt_opt_5step_ohem.yml
+Completed 6 of 15 part(s) with 9 file(s) remainingupload: experiments/README.md to s3://disneydsy/py-R-FCN/experiments/README.md
+Completed 7 of 15 part(s) with 8 file(s) remainingupload: experiments/scripts/rfcn_alt_opt_5stage_ohem.sh to s3://disneydsy/py-R-FCN/experiments/scripts/rfcn_alt_opt_5stage_ohem.sh
+Completed 8 of 15 part(s) with 7 file(s) remainingupload: experiments/scripts/faster_rcnn_end2end.sh to s3://disneydsy/py-R-FCN/experiments/scripts/faster_rcnn_end2end.sh
+Completed 9 of 15 part(s) with 6 file(s) remainingupload: experiments/scripts/rfcn_end2end.sh to s3://disneydsy/py-R-FCN/experiments/scripts/rfcn_end2end.sh
+Completed 10 of 15 part(s) with 5 file(s) remainingupload: experiments/logs/rfcn_end2end_ResNet-101_.txt.2017-02-24_05-44-33 to s3://disneydsy/py-R-FCN/experiments/logs/rfcn_end2end_ResNet-101_.txt.2017-02-24_05-44-33
+Completed 11 of 15 part(s) with 4 file(s) remainingupload: experiments/scripts/rfcn_end2end_ohem.sh to s3://disneydsy/py-R-FCN/experiments/scripts/rfcn_end2end_ohem.sh
+Completed 12 of 15 part(s) with 3 file(s) remainingupload: experiments/scripts/faster_rcnn_alt_opt.sh to s3://disneydsy/py-R-FCN/experiments/scripts/faster_rcnn_alt_opt.sh
+Completed 13 of 15 part(s) with 2 file(s) remainingupload: experiments/cfgs/rfcn_end2end_ohem.yml to s3://disneydsy/py-R-FCN/experiments/cfgs/rfcn_end2end_ohem.yml
+Completed 14 of 15 part(s) with 1 file(s) remainingupload: experiments/cfgs/rfcn_end2end.yml to s3://disneydsy/py-R-FCN/experiments/cfgs/rfcn_end2end.yml
+Completed 1 of 56 part(s) with 5 file(s) remainingCompleted 2 of 56 part(s) with 5 file(s) remainingCompleted 3 of 56 part(s) with 5 file(s) remaining/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 9: jq: command not found
+Completed 4 of 56 part(s) with 5 file(s) remainingCompleted 5 of 56 part(s) with 5 file(s) remainingCompleted 6 of 56 part(s) with 5 file(s) remainingCompleted 7 of 56 part(s) with 5 file(s) remainingupload: output/rfcn_end2end_ohem/voc_2007_test/resnet50_rfcn_ohem_iter_20000/detections.pkl to s3://disneydsy/py-R-FCN/output/rfcn_end2end_ohem/voc_2007_test/resnet50_rfcn_ohem_iter_20000/detections.pkl
+Completed 7 of 56 part(s) with 4 file(s) remainingCompleted 8 of 56 part(s) with 4 file(s) remainingCompleted 9 of 56 part(s) with 4 file(s) remainingCompleted 10 of 56 part(s) with 4 file(s) remaining[Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 10: [: =: unary operator expected
+Completed 11 of 56 part(s) with 4 file(s) remainingupload: output/rfcn_end2end_ohem/voc_2007_test/resnet50_rfcn_ohem_iter_20000/test_preds.pkl to s3://disneydsy/py-R-FCN/output/rfcn_end2end_ohem/voc_2007_test/resnet50_rfcn_ohem_iter_20000/test_preds.pkl
+Completed 12 of 56 part(s) with 3 file(s) remainingCompleted 13 of 56 part(s) with 3 file(s) remainingCompleted 14 of 56 part(s) with 3 file(s) remainingCompleted 15 of 56 part(s) with 3 file(s) remainingCompleted 16 of 56 part(s) with 3 file(s) remainingCompleted 17 of 56 part(s) with 3 file(s) remainingCompleted 18 of 56 part(s) with 3 file(s) remainingCompleted 19 of 56 part(s) with 3 file(s) remainingCompleted 20 of 56 part(s) with 3 file(s) remainingCompleted 21 of 56 part(s) with 3 file(s) remainingCompleted 22 of 56 part(s) with 3 file(s) remainingCompleted 23 of 56 part(s) with 3 file(s) remainingCompleted 24 of 56 part(s) with 3 file(s) remainingCompleted 25 of 56 part(s) with 3 file(s) remainingupload: output/rfcn_end2end_ohem/voc_2007_test/resnet50_rfcn_ohem_iter_20000/detections_full.pkl to s3://disneydsy/py-R-FCN/output/rfcn_end2end_ohem/voc_2007_test/resnet50_rfcn_ohem_iter_20000/detections_full.pkl
+Completed 25 of 56 part(s) with 2 file(s) remainingCompleted 26 of 56 part(s) with 2 file(s) remainingCompleted 27 of 56 part(s) with 2 file(s) remainingCompleted 28 of 56 part(s) with 2 file(s) remainingCompleted 29 of 56 part(s) with 2 file(s) remainingCompleted 30 of 56 part(s) with 2 file(s) remainingCompleted 31 of 56 part(s) with 2 file(s) remainingCompleted 32 of 56 part(s) with 2 file(s) remainingCompleted 33 of 56 part(s) with 2 file(s) remainingCompleted 34 of 56 part(s) with 2 file(s) remainingCompleted 35 of 56 part(s) with 2 file(s) remainingCompleted 36 of 56 part(s) with 2 file(s) remainingCompleted 37 of 56 part(s) with 2 file(s) remainingCompleted 38 of 56 part(s) with 2 file(s) remainingupload: output/rfcn_end2end_ohem/voc_2007_trainval/resnet50_rfcn_ohem_iter_10000.caffemodel to s3://disneydsy/py-R-FCN/output/rfcn_end2end_ohem/voc_2007_trainval/resnet50_rfcn_ohem_iter_10000.caffemodel
+Completed 38 of 56 part(s) with 1 file(s) remainingCompleted 39 of 56 part(s) with 1 file(s) remainingCompleted 40 of 56 part(s) with 1 file(s) remainingCompleted 41 of 56 part(s) with 1 file(s) remainingCompleted 42 of 56 part(s) with 1 file(s) remainingCompleted 43 of 56 part(s) with 1 file(s) remainingCompleted 44 of 56 part(s) with 1 file(s) remainingCompleted 45 of 56 part(s) with 1 file(s) remainingCompleted 46 of 56 part(s) with 1 file(s) remainingCompleted 47 of 56 part(s) with 1 file(s) remaining/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 9: jq: command not found
+Completed 48 of 56 part(s) with 1 file(s) remainingCompleted 49 of 56 part(s) with 1 file(s) remainingCompleted 50 of 56 part(s) with 1 file(s) remainingCompleted 51 of 56 part(s) with 1 file(s) remaining[Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+BrokenPipeError: [Errno 32] Broken pipe
+Completed 52 of 56 part(s) with 1 file(s) remainingCompleted 53 of 56 part(s) with 1 file(s) remainingCompleted 54 of 56 part(s) with 1 file(s) remaining/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 10: [: =: unary operator expected
+Completed 55 of 56 part(s) with 1 file(s) remainingCompleted 56 of 56 part(s) with 1 file(s) remainingupload: output/rfcn_end2end_ohem/voc_2007_trainval/resnet50_rfcn_ohem_iter_20000.caffemodel to s3://disneydsy/py-R-FCN/output/rfcn_end2end_ohem/voc_2007_trainval/resnet50_rfcn_ohem_iter_20000.caffemodel
+/home/ubuntu/py-R-FCN/terminate_gitpush.sh: line 9: jq: command not found
+[Errno 32] Broken pipe
+Exception ignored in: <_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>
+BrokenPipeError: [Errno 32] Broken pipe
