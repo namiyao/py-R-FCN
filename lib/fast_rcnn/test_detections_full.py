@@ -228,9 +228,10 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
     """Test a Fast R-CNN network on an image database."""
     num_images = len(imdb.image_index)
     # all detections are collected into:
-    #    all_boxes[image] = N x 5 array of detections in
+    #    all_boxes[cls][image] = N x 5 array of detections in
     #    (x1, y1, x2, y2, score)
-    all_boxes = [[] for _ in xrange(num_images)]
+    all_boxes = [[[] for _ in xrange(num_images)]
+                 for _ in xrange(imdb.num_classes)]
 
     output_dir = get_output_dir(imdb, net)
 
@@ -261,31 +262,34 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
 
         _t['misc'].tic()
         # skip j = 0, because it's the background class
-        
-        scores_max = np.amax(scores[:,1:], axis=1, keepdims=True)
-        index = np.argmax(scores[:,1:], axis=1)
-        boxes_max = np.zeros((scores.shape[0],4))
-        for k in xrange(scores.shape[0]):
+        for j in xrange(1, imdb.num_classes):
+            inds = np.where(scores[:, j] > thresh)[0]
+            cls_scores = scores[inds, j]
+            cls_scores_full = scores[inds, :]
             if cfg.TEST.AGNOSTIC:
-                boxes_max[k] = boxes[k, 4:8]
+                cls_boxes = boxes[inds, 4:8]
             else:
-                boxes_max[k] = boxes[k, (index[k]+1)*4:(index[k]+2)*4]
-                
-                
-        dets = np.hstack((boxes_max, scores_max)).astype(np.float32, copy=False)
-        keep = nms(dets, cfg.TEST.NMS)
-        dets = dets[keep, :]
-        dets_full = np.hstack((boxes_max, scores)).astype(np.float32, copy=False)
-        dets_full = dets_full[keep, :]
-        
+                cls_boxes = boxes[inds, j*4:(j+1)*4]
+            cls_dets = np.hstack((cls_boxes, cls_scores[:, np.newaxis])) \
+                .astype(np.float32, copy=False)
+            cls_dets_full = np.hstack((cls_boxes, cls_scores_full)) \
+                .astype(np.float32, copy=False)
+            keep = nms(cls_dets, cfg.TEST.NMS)
+            cls_dets = cls_dets[keep, :]
+            cls_dets_full = cls_dets_full[keep, :]
+            if vis:
+                vis_detections(im, imdb.classes[j], cls_dets)
+            all_boxes[j][i] = cls_dets_full
+
         # Limit to max_per_image detections *over all classes*
         if max_per_image > 0:
-            image_scores = dets[:, 4]
+            image_scores = np.hstack([all_boxes[j][i][:, 4+j]
+                                      for j in xrange(1, imdb.num_classes)])
             if len(image_scores) > max_per_image:
                 image_thresh = np.sort(image_scores)[-max_per_image]
-                keep = np.where(dets[:, 4] >= image_thresh)[0]
-                dets_full = dets_full[keep, :]
-        all_boxes[i] = dets_full
+                for j in xrange(1, imdb.num_classes):
+                    keep = np.where(all_boxes[j][i][:, 4+j] >= image_thresh)[0]
+                    all_boxes[j][i] = all_boxes[j][i][keep, :]
         _t['misc'].toc()
 
         print 'im_detect: {:d}/{:d} {:.3f}s {:.3f}s' \
@@ -300,7 +304,7 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
     #with open(test_preds_file, 'wb') as f:
     #    cPickle.dump(test_preds, f, cPickle.HIGHEST_PROTOCOL)
     
-    det_file = os.path.join(output_dir, 'detections_full_AGNOSTICnms.pkl')
+    det_file = os.path.join(output_dir, 'detections_full.pkl')
     with open(det_file, 'wb') as f:
         cPickle.dump(all_boxes, f, cPickle.HIGHEST_PROTOCOL)
 
