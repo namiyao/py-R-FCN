@@ -241,6 +241,7 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
         roidb = imdb.roidb
 
        
+    #test_preds = np.ndarray((num_images,imdb.num_classes), dtype='float')
     for i in xrange(num_images):
         # filter out any ground truth boxes
         if cfg.TEST.HAS_RPN:
@@ -259,7 +260,9 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
         _t['im_detect'].toc()
 
         _t['misc'].tic()
+        # skip j = 0, because it's the background class
         
+        scores_max = np.amax(scores[:,1:], axis=1, keepdims=True)
         index = np.argmax(scores[:,1:], axis=1)
         boxes_max = np.zeros((scores.shape[0],4))
         for k in xrange(scores.shape[0]):
@@ -267,16 +270,37 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
                 boxes_max[k] = boxes[k, 4:8]
             else:
                 boxes_max[k] = boxes[k, (index[k]+1)*4:(index[k]+2)*4]
-
+                
+                
+        dets = np.hstack((boxes_max, scores_max)).astype(np.float32, copy=False)
+        keep = nms(dets, cfg.TEST.NMS)
+        dets = dets[keep, :]
         dets_full = np.hstack((boxes_max, scores)).astype(np.float32, copy=False)
+        dets_full = dets_full[keep, :]
+        
+        # Limit to max_per_image detections *over all classes*
+        if max_per_image > 0:
+            image_scores = dets[:, 4]
+            if len(image_scores) > max_per_image:
+                image_thresh = np.sort(image_scores)[-max_per_image]
+                keep = np.where(dets[:, 4] >= image_thresh)[0]
+                dets_full = dets_full[keep, :]
         all_boxes[i] = dets_full
         _t['misc'].toc()
 
         print 'im_detect: {:d}/{:d} {:.3f}s {:.3f}s' \
               .format(i + 1, num_images, _t['im_detect'].average_time,
                       _t['misc'].average_time)
+              
+        #index_wobg = np.argmax(np.amax(scores[:,1:], axis=1))
+        #test_preds[i,:] = scores[index_wobg,:]
+
     
-    det_file = os.path.join(output_dir, 'detections_ROIs.pkl')
+    #test_preds_file = os.path.join(output_dir, 'test_preds.pkl')
+    #with open(test_preds_file, 'wb') as f:
+    #    cPickle.dump(test_preds, f, cPickle.HIGHEST_PROTOCOL)
+    
+    det_file = os.path.join(output_dir, 'detections_full_AGNOSTICnms.pkl')
     with open(det_file, 'wb') as f:
         cPickle.dump(all_boxes, f, cPickle.HIGHEST_PROTOCOL)
 
