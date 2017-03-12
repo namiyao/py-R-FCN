@@ -276,7 +276,7 @@ def test_net(net, imdb, max_per_image=400, thresh=-np.inf, vis=False):
               .format(i + 1, num_images, _t['im_detect'].average_time,
                       _t['misc'].average_time)
     
-    det_file = os.path.join(output_dir, 'detections_ROIs.pkl')
+    det_file = os.path.join(output_dir, 'detections_RoIs.pkl')
     with open(det_file, 'wb') as f:
         cPickle.dump(all_boxes, f, cPickle.HIGHEST_PROTOCOL)
 
